@@ -1,0 +1,31 @@
+{% block meta %}              
+    <meta charset="utf-8" />
+    {% if meta.title %}
+        <title> {{ meta.title }} | {{settings.business_name}}</title>
+        {% else %}
+        <title>{{ settings.meta_title }} | {{settings.business_name}}</title>
+    {% endif %}    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% if meta.description %}
+        <meta name="description" content="{{meta.description}}" />
+        {% else %}
+        <meta name="description" content="{{settings.meta_description}}" />
+    {% endif %}
+    {% if meta.description %}
+        <meta name="keywords" content="{{meta.keywords}}" />
+        {% else %}
+        <meta name="keywords" content="{{settings.meta_keywords}}" />
+    {% endif %}         
+    <meta name="author" content="{{settings.meta_author}}" />
+    <meta name="email" content="{{settings.email}}" />
+    <meta name="website" content="{{settings.meta_website}}" />
+    <meta name="robots" content="{{settings.meta_robots}}" /> 
+    <meta name="Version" content="v1.0" />
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','{{settings.gtm_code}}');</script>
+    <!-- End Google Tag Manager --> 
+{% endblock %}

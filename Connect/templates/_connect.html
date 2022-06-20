@@ -1,0 +1,47 @@
+<div class="card rounded shadow border-0 bg-soft-danger">
+    <div class="card-body py-5">
+        <h5 class="card-title">Get a Call From Us !</h5>
+        <p>Know everything about Admissions from our Expert.</p>
+
+        <div class="custom-form mt-4">
+            <div id="message"></div>
+            <form method="post" name="CallbackForm" id="CallbackForm">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="mb-3">
+                            <label class="form-label">Name <span class="text-danger">*</span></label>
+                            <div class="form-icon position-relative">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user fea icon-sm icons"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                                <input name="name" id="name" type="text" class="form-control ps-5" placeholder="Enter your Name :">
+                            </div>
+                        </div>
+                    </div><!--end col-->
+                    <div class="col-md-12">
+                        <div class="mb-3">
+                            <label class="form-label">Mobile Number <span class="text-danger">*</span></label>
+                            <div class="form-icon position-relative">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-phone fea icon-sm icons"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>                                                                
+                                <input name="phone" id="phone" type="tel" class="form-control ps-5" placeholder="Your Mobile Number :">
+                            </div>
+                        </div> 
+                    </div><!--end col-->
+                </div><!--end row-->
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <div class="d-grid">
+                            <input type="submit" id="submit" name="send" class="submitBnt btn btn-primary" value="Send Message">
+                            <div id="simple-msg"></div>
+                        </div>
+                    </div><!--end col-->
+                </div><!--end row-->                         
+            </form><!--end form-->            
+        </div><!--end custom-form-->
+        {% if success%}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Form successfully sent!</strong> Our Expert will Call you soon.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"> </button>
+        </div>       
+        {% endif %}
+    </div>                                    
+</div>

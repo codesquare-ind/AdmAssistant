@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %} 
+<!-- Hero Start -->
+        <section class="bg-half-100 bg-muted d-table w-100">
+            <div class="container">
+                <div class="row mt-5 justify-content-center">
+                    <div class="col-lg-12 text-center">
+                        <div class="pages-heading">
+                            <h1> MBBS from {{object.name|safe}} </h1>
+                            <!--<ul class="list-unstyled mt-4 mb-0">
+                                <li class="list-inline-item h6 user text-muted me-2"><i class="mdi mdi-account"></i> Calvin Carlo</li>
+                                <li class="list-inline-item h6 date text-muted"><i class="mdi mdi-calendar-check"></i> 25th June 2021</li>
+                            </ul>-->                            
+                        </div>                        
+                    </div><!--end col-->
+                </div><!--end row-->
+                <div class="position-breadcrumb">
+                    <nav aria-label="breadcrumb" class="d-inline-block">
+                        <ul class="breadcrumb bg-warning rounded shadow mb-0 px-4 py-2">                           
+                            <li class="breadcrumb-item"><a href="tel:{{settings.mobile}}">Enquire Now</a></li>                            
+                        </ul>
+                    </nav>
+                </div>
+            </div> <!--end container-->
+        </section><!--end section-->
+        <!-- Hero End -->
+
+        <!-- Shape Start -->
+        <div class="position-relative">
+            <div class="shape overflow-hidden text-color-white">
+                <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0 48H1437.5H2880V0H2160C1442.5 52 720 0 720 0H0V48Z" fill="currentColor"></path>
+                </svg>
+            </div>
+        </div>
+        <!--Shape End-->
+        <!-- Blog STart -->
+        <section class="section">
+            <div class="container">                
+                <div class="row">
+                    <h5 class="widget-title">Admission Insights :</h5>
+                    <div class="row mt-4">
+                        <div class="col-3 text-center">
+                            <i data-feather="dollar-sign" class="fea icon-ex-md text-primary mb-1"></i>
+                            <h5 class="mb-0">{{meta.course.average_cost_to_stay_currency|safe}} {{meta.course.average_cost_to_stay|safe}}</h5>
+                            <p class="text-muted mb-0">Average Cost to Stay</p>
+                        </div><!--end col-->
+
+                        <div class="col-3 text-center">
+                            <i data-feather="credit-card" class="fea icon-ex-md text-primary mb-1"></i>
+                            <h5 class="mb-0">{{meta.course.fee_currency|safe}} {{meta.course.fee|safe}}</h5>
+                            <p class="text-muted mb-0">Fee</p>
+                        </div><!--end col-->
+                        <div class="col-3 text-center">
+                            <i data-feather="map-pin" class="fea icon-ex-md text-primary mb-1"></i>
+                            <h5 class="mb-0">{{object.location_country|safe}}</h5>
+                            <p class="text-muted mb-0">Country</p>
+                        </div><!--end col-->
+
+                        <div class="col-3 text-center">
+                            <i data-feather="phone-outgoing" class="fea icon-ex-md text-primary mb-1"></i>
+                            <h5 class="mb-0"><a href="tel:{{object.contact_number}}">Call</a></h5>
+                            <p class="text-muted mb-0">{{object.contact_type}} Contact</p>
+                        </div><!--end col-->
+                    </div><!--end row-->
+                </div>
+                <div class="row"> <h6>.</h6></div>
+                <div class="row">
+                    <!-- BLog Start -->
+                    <div class="col-lg-8 col-md-6">
+                        <div class="card blog blog-detail border-0 shadow rounded">
+                            {% if object.logo_url %}
+                                <img src="{{object.logo_url}}" class="img-fluid rounded-top" alt="{{object.name}}">
+                            {%else%}
+                                <img src="{% static 'assets/images/blog/01.jpg' %}" class="img-fluid rounded-top" alt="{{object.name}}">
+                            {% endif %}                           
+                            
+                            <div class="card-body content">
+                            {% if object.short_description %}
+                                {{ object.short_description|safe }}
+                                {% else %}
+                                Our Team is working on this area. you may request a callback, just drop your number in right form.
+                            {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <!-- BLog End -->
+
+                    <!-- START SIDEBAR -->
+                    <div class="col-lg-4 col-md-6 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                        <div class="card border-0 sidebar sticky-bar ms-lg-4">
+                            <div class="card-body p-0">
+                                {% block connect %}
+                                    {% include '_connect.html' %}    
+                                {% endblock %}
+                                <div class="widget mt-4 bg-soft-primary text-center">
+                                    <a href="tel:{{settings.mobile}}" class="btn btn-danger">Call Now!</a>                               
+                                </div>
+                                <!-- RECENT POST -->
+                                <div class="widget mt-4">
+                                    <span class="bg-dark d-block py-2 rounded shadow text-center text-light h6 mb-0">
+                                       <h2> MBBS Abroad {{object.location_country|safe}}</h2>
+                                    </span>
+                                    <div class="mt-4">
+                                    {% for provider in providers %}
+                                        {% if object.id != provider.id %}
+                                        <div class="d-flex align-items-center">
+                                            <div class="flex-1 ms-3 link-primary">
+                                                <a href="/provider/{{provider.slug}}" class="d-block title link-primary"><h3> MBBS from {{ provider.name|safe }} </h3></a>
+                                            </div>
+                                        </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                    </div>
+                                </div>
+                                <!-- RECENT POST -->
+                                <!-- SOCIAL -->
+                                <div class="widget mt-4 bg-soft-warning shadow-lg p-3 mb-5 bg-body rounded">
+                                    <span class="bg-primary d-block py-2 rounded shadow text-center text-light h6 mb-0">
+                                        Share @ Social Media
+                                    </span>
+
+                                    <ul class="list social-icon social text-center mb-0 mt-4">
+                                        <li class="list-inline-item"><a href="https://api.whatsapp.com/send?text=I am sharing this, feel free to get a free MBBS Abroad ({{ object.full_name }}.././..) Consultation here. {{ request.build_absolute_uri|urlencode }}" data-action="share/whatsapp/share" target="_blank" rel="nofollow"  class="rounded"><i class="mdi mdi-whatsapp"></i></a></li>
+                                        <li class="list-inline-item"><a href="https://www.facebook.com/sharer.php?u={{ request.build_absolute_uri|urlencode }}" target="_blank" rel="nofollow" class="rounded"><i class="mdi mdi-facebook"></i></a></li>                                        
+                                        <li class="list-inline-item"><a href="https://www.linkedin.com/shareArticle?url={{ request.build_absolute_uri|urlencode }}&title={{meta.title}}&summary=NA&source={{request.build_absolute_uri|urlencode}}" target="blank"><i class="mdi mdi-linkedin"></i></a></li>
+                                        <li class="list-inline-item"><a href="https://t.me/share/url?url={{ request.build_absolute_uri|urlencode }}&text=I am sharing this, feel free to get a free MBBS Abroad ({{ object.full_name }}.././..) Consultation here."  target="blank" class="rounded"><i class="mdi mdi-telegram"></i></a></li>                                        
+                                        <li class="list-inline-item"><a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri|urlencode }};text={{ settings.business_name }}&amp;via=&amp;hashtags=MbbsAbroad,MBBS,MBBSin{{object.full_name}},NEET,NEET{% now 'Y' %},{{object.full_name}}" target="_blank" rel="nofollow" class="rounded"><i class="mdi mdi-twitter"></i></a></li>
+                                    </ul><!--end icon-->
+                                </div>
+                                <!-- SOCIAL -->
+                            </div>
+                        </div>
+                    </div><!--end col-->
+                    <!-- END SIDEBAR -->
+                </div><!--end row-->
+            </div><!--end container-->
+        </section><!--end section-->
+        <!-- Blog End -->
+{% endblock %}
