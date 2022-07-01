@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-xe7r&zuw1scx11qh)obx(d)v432k2n^#uzn2e=z8so$bdun0vs'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['0.0.0.0','localhost', '127.0.0.1','https://admissionsquare.in','admissionsquare.in','https://admassistant.fra1.digitaloceanspaces.com']
 
