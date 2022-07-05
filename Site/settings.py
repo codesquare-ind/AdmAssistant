@@ -233,7 +233,7 @@ TINYMCE_DEFAULT_CONFIG = {
    }
 #caching 
 # https://devcenter.heroku.com/articles/django-memcache  
-def get_cache():    
+"""def get_cache():    
   try:
     servers = os.environ['MEMCACHIER_SERVERS']
     username = os.environ['MEMCACHIER_USERNAME']
@@ -277,4 +277,4 @@ def get_cache():
       }
     }
 
-CACHES = get_cache()
+CACHES = get_cache()"""
