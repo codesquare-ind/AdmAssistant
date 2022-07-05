@@ -167,7 +167,8 @@ class SiteSetting(SingletonModel):
     email = models.EmailField(default='support@example.com')
     logo_url = models.URLField(max_length = 200, default='https://example.com/abc.jpg')
     favicon_url = models.URLField(max_length = 200, default='https://example.com/abc.jpg')
-    
+    featured_video_url = models.URLField(max_length = 200, default='https://youtube.com')
+
     fb_url = models.URLField(max_length = 200, default='https://facebook.com')
     insta_url = models.URLField(max_length = 200, default='https://instagram.com')
     linkedin_url = models.URLField(max_length = 200, default='https://linkedin.com')
@@ -195,6 +196,8 @@ class SiteSetting(SingletonModel):
     ga_code = models.CharField(max_length=16, default='NA', help_text = "google analytics code")
     go_code = models.CharField(max_length=16, default='NA', help_text = "google optimizer code")
 
+    fb_page_id = models.CharField(max_length=16, default='NA', help_text = "PageId : FB Messanger Chat Plugin")
+    
     smtp_host = models.CharField(max_length=50, null=True, blank=True, default='smtp.gmail.com')
     smtp_port = models.CharField(max_length=6, null=True, blank=True, default=587)
     use_tls = models.BooleanField(default=True)
