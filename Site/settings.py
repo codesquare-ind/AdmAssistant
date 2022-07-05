@@ -169,7 +169,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR ,"static")]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #TINYMCE_JS_URL = "https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.0.3/tinymce.min.js"#os.path.join(STATIC_URL, "tinymce/tinymce.min.js")
-TINYMCE_JS_ROOT = os.path.join(STATIC_ROOT, "tinymce")
+#TINYMCE_JS_ROOT = os.path.join(STATIC_ROOT, "tinymce")
 TINYMCE_DEFAULT_CONFIG = {
 
    'height': 360,
