@@ -144,7 +144,7 @@ class SingletonModel(models.Model):
                 return cache.get(cls.__class__.__name__)
         
         @classmethod
-        def loaddd(self):
+        def loadddd(self):
                 if cache.get(self.__class__.__name__) is None:
                         obj, created = self.objects.get_or_create(pk=1)
                         if not created:
@@ -153,8 +153,14 @@ class SingletonModel(models.Model):
         
         @classmethod
         def load(cls):
-                obj, created = cls.objects.get_or_create(pk=1)
-                return obj
+                #obj, created = cls.objects.get_or_create(pk=1)
+                #return obj
+                if cache.get(cls.__name__) is None:
+                        obj, created = cls.objects.get_or_create(pk=1)
+                        if not created:
+                                obj.set_cache()
+                return cache.get(cls.__name__)               
+                
 
 class SiteSetting(SingletonModel):
     business_name = models.CharField(max_length=255, default='My Business Name')
@@ -197,7 +203,7 @@ class SiteSetting(SingletonModel):
     go_code = models.CharField(max_length=16, default='NA', help_text = "google optimizer code")
 
     fb_page_id = models.CharField(max_length=16, default='NA', help_text = "PageId : FB Messanger Chat Plugin")
-    
+
     smtp_host = models.CharField(max_length=50, null=True, blank=True, default='smtp.gmail.com')
     smtp_port = models.CharField(max_length=6, null=True, blank=True, default=587)
     use_tls = models.BooleanField(default=True)
