@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-xe7r&zuw1scx11qh)obx(d)v432k2n^#uzn2e=z8so$bdun0vs'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['0.0.0.0','localhost', '127.0.0.1','https://admissionsquare.in','admissionsquare.in','https://fra1.digitaloceanspaces.com/admassistant']
 
@@ -40,11 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
-    'Site',
-    
-    'whitenoise.runserver_nostatic', 
     'storages',
+    'Site',
     'Connect',
 ]
 
@@ -172,12 +169,12 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR ,"static")]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #TINYMCE_JS_URL = "https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.0.3/tinymce.min.js"#os.path.join(STATIC_URL, "tinymce/tinymce.min.js")
-#TINYMCE_JS_ROOT = os.path.join(STATIC_ROOT, "tinymce")
+TINYMCE_JS_ROOT = os.path.join(STATIC_ROOT, "tinymce")
 TINYMCE_DEFAULT_CONFIG = {
 
    'height': 360,
 
-   'width': 1000,
+   'width': 900,
 
    'cleanup_on_startup': True,
 
