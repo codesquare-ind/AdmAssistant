@@ -63,14 +63,12 @@ class Provider(models.Model):
 
     IsActive = models.BooleanField(default=True)
     last_modified = models.DateField(default=datetime.date.today)
+    added_by = models.CharField(max_length=255, blank=True, null=True)
     
     def __str__(self):
         return self.name
 
-    def save(self, *args, **kwargs):
-        current_year = datetime.datetime.now().year  
-        self.slug=slugify("mbbs-abroad-"+self.location_country+" "+str(current_year)+" from "+self.name)
-        super(Provider,self).save(*args,**kwargs)
+    #saving moved to admin
 
 class ProvidersCourse(models.Model):
     Currency=(('USD','USD'),('INR','INR'))

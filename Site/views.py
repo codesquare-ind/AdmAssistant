@@ -5,21 +5,7 @@ from.models import Location, Provider, ProvidersCourse
 
 def home(request):
         return render(request, 'home.html', context={})
-        """off_courses = Courses.get_offline_courses(request)
-        cTypes =Courses.get_verbose(request)
-        documents = Documents.objects.filter(IsActive=True,)
-        on_courses= Courses.get_online_courses(request)
-        context={
-                "courseTypes":cTypes,"offline_courses": off_courses,
-                "online_courses":on_courses,"documents":documents,
-                "meta":
-                {
-                        "title":"Best Medical Courses for Doctors in Delhi | DMHCA | delhimedical.net",
-                        "keywords":"ultrasound training courses in delhi, hospital management courses online in delhi, UGC and MCI approved Courses, ultrasonography classes in delhi",
-                        "description":"DMHCA delhimedical.net is a wellknown institution which provides medical courses in delhi offline and online, contact us for all online medical courses and training including ultrasound, sonography, B Pharma."
-                }
-                }
-        return render(request, 'home.html', context)"""
+        
 
 class LocationDetailView(DetailView):
     # specify the model to use
@@ -59,6 +45,8 @@ class ProviderDetailView(DetailView):
                 "description":"MBBS from "+self.object.name +" is really perfect for indian Medical students. "+self.object.short_description,
                 "keywords" : "MBBS, NEET, JIPMER, MBBS from "+self.object.name+","+self.object.slug,
                 "course" : ProvidersCourse.objects.filter(IsActive=1, provider_id=self.object.id, course_id=1)[0],
+                "url" : self.object.slug,
+                "author" : self.object.added_by
                 }              
         return context
 

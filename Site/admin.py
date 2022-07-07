@@ -18,6 +18,16 @@ admin.site.register(Course,CourseAdmin)
 class ProviderAdmin(admin.ModelAdmin):
     list_display = ["name"]
     
+    def save_model(self, request, obj, form, change):
+        if request.user.first_name:
+            obj.added_by = request.user.first_name
+        else :
+            obj.added_by = request.user.username
+
+        current_year = datetime.datetime.now().year  
+        self.slug=slugify("mbbs-abroad-"+self.location_country+" "+str(current_year)+" from "+self.name)
+        super().save_model(request, obj, form, change)
+
     def get_form(self, request, obj=None, **kwargs):
         form = super(ProviderAdmin, self).get_form(request, obj, **kwargs)
         form.base_fields['location'].queryset = Location.objects.filter(location_type__iexact='Country')
