@@ -1,26 +1,22 @@
 {% block meta %}              
-    <meta charset="utf-8" />
-    {% if meta.title %}
-        <title> {{ meta.title }} | {{settings.business_name}}</title>
-        {% else %}
-        <title>{{ settings.meta_title }} | {{settings.business_name}}</title>
-    {% endif %}    
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% if meta.description %}
-        <meta name="description" content="{{meta.description}}" />
-        {% else %}
-        <meta name="description" content="{{settings.meta_description}}" />
-    {% endif %}
-    {% if meta.description %}
-        <meta name="keywords" content="{{meta.keywords}}" />
-        {% else %}
-        <meta name="keywords" content="{{settings.meta_keywords}}" />
-    {% endif %}         
-    <meta name="author" content="{{settings.meta_author}}" />
-    <meta name="email" content="{{settings.email}}" />
-    <meta name="website" content="{{settings.meta_website}}" />
-    <meta name="robots" content="{{settings.meta_robots}}" /> 
+    <meta charset="utf-8" />    
+    <title>{% if meta.title %} {{ meta.title|safe }} | {{settings.business_name|safe}} {% else %} {{ settings.meta_title|safe }} | {{settings.business_name|safe}} {% endif %} </title>    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <meta name="description" content={% if meta.description %} "{{meta.description|safe}}" {% else %} "{{settings.meta_description|safe}}" {% endif %} />
+    <meta name="keywords" content={% if meta.keywords %} "{{meta.keywords|safe}}" {% else %} "{{settings.meta_keywords|safe}}" {% endif %} />       
+    <meta name="author" content={% if meta.author %} "{{meta.author|safe}}" {% else %} {{settings.meta_author|safe}}"  {% endif %} />
+    <meta name="email" content="{{settings.email|safe}}" />
+    <meta name="website" content="{{settings.meta_website|safe}}" />
+    <meta name="robots" content="{{settings.meta_robots|safe}}" /> 
     <meta name="Version" content="v1.0" />
+    <!-- Opengraph -->
+    <meta property="og:title" content={% if meta.title %} {{ meta.title|safe }} | {{settings.business_name|safe}} {% else %} {{ settings.meta_title|safe }} | {{settings.business_name|safe}} {% endif %} />    
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={% if meta.url %} "{{settings.meta_website|safe}}/{{meta.url|safe}}" {% else %} "{{settings.meta_website|safe}} {% endif %} />    
+    <meta property="og:image" content={% if settings.logo_url %} "{{settings.logo_url|safe}}" {% else %} "NA" {% endif %} />
+    <meta property="og:description" content={% if meta.description %} "{{meta.description|safe}}" {% else %} "{{settings.meta_description|safe}}" {% endif %} />
+    <meta property="og:site_name" content="{{settings.business_name|safe}}" />
+    <meta property="fb:admins" content="{{settings.fb_admin_id|safe}}" />
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],

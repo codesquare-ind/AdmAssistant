@@ -35,7 +35,9 @@ class LocationDetailView(DetailView):
         context['meta'] = {
                 "title":"MBBS in "+self.object.full_name,
                 "description":"MBBS in "+self.object.full_name +" is one of the best destination for indian Medical students. "+self.object.meta_description,
-                "keywords" : ""+self.object.meta_keywords
+                "keywords" : ""+self.object.meta_keywords,
+                "url" : self.object.slug,
+                "author" : self.object.added_by
                 }              
         return context
 

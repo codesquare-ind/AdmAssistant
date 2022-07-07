@@ -6,6 +6,7 @@ from django.utils.text import slugify
 from tinymce.models import HTMLField
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.core.mail import send_mail, BadHeaderError
+from django.contrib.auth.models import User
 
 class Location(models.Model):
     Location_Types=(('City','City'),('Country','Country'),('State','State'))
@@ -19,11 +20,14 @@ class Location(models.Model):
     meta_keywords = models.CharField(max_length=255, null=True, blank=True, default='_')
     meta_description = models.CharField(max_length=255, null=True, blank=True, default='_')
     IsActive = models.BooleanField(default=True)
+    #added_by = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL)
+    added_by = models.CharField(max_length=255, blank=True, null=True)
 
-    def save(self, *args, **kwargs):
-        self.slug=slugify("mbbs-in-"+self.full_name)
-        super(Location,self).save(*args,**kwargs)
-    
+    #def save(self, *args, **kwargs):
+    #    self.slug=slugify("mbbs-in-"+self.full_name)
+    #    super(Location,self).save(*args,**kwargs)
+    #code for saving locations is in admin.py
+
 class Course(models.Model):
     name = models.CharField(max_length=255, unique=True, null=False, blank=False)
     short_description = models.CharField(max_length=255, unique=True, null=False, blank=False)
@@ -204,6 +208,7 @@ class SiteSetting(SingletonModel):
     go_code = models.CharField(max_length=16, default='NA', help_text = "google optimizer code")
 
     fb_page_id = models.CharField(max_length=16, default='NA', help_text = "PageId : FB Messanger Chat Plugin")
+    fb_admin_id = models.CharField(max_length=255, default='NaN', help_text = "fb:admins : Facebook Admin ID - go to page viewsource search User_ID, if you are admin")
 
     smtp_host = models.CharField(max_length=50, null=True, blank=True, default='smtp.gmail.com')
     smtp_port = models.CharField(max_length=6, null=True, blank=True, default=587)

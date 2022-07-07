@@ -4,48 +4,48 @@
         {
         "@content":"https://schema.org",
         "@type":"organisation",
-        "name":"{{settings.business_name}}",
-        "description": "{{settings.business_description}}"
-        "logo":"{{settings.logo_url}}",
-        "url":"{{settings.meta_website}}",
-        "email":"{{settings.email}}",
+        "name":"{{settings.business_name|safe}}",
+        "description": "{{settings.business_description|safe}}"
+        "logo":"{{settings.logo_url|safe}}",
+        "url":"{{settings.meta_website|safe}}",
+        "email":"{{settings.email|safe}}",
         "member": [
             {
             "@type": "Organization"
-            }]
+            }],
         "address": {
                 "@type": "PostalAddress",
-                "addressLocality": "{{settings.business_HO_city}}",
+                "addressLocality": "{{settings.business_HO_city|safe}}",
                 "addressRegion": "IN",
-                "streetAddress": "{{settings.business_HO_address}}"
+                "streetAddress": "{{settings.business_HO_address|safe}}"
             },
         "contactPoint":[
             {
             "@type" : "ContactPoint",
-            "telephone" : "{{settings.mobile}}",
+            "telephone" : "{{settings.mobile|safe}}",
             "contactType" : "student admission services"
             },
             {
             "@type" : "ContactPoint",
-            "telephone" : "{{settings.mobile2}}",
+            "telephone" : "{{settings.mobile2|safe}}",
             "contactType" : "support services"
             },
             {
             "@type" : "ContactPoint",
-            "telephone" : "{{settings.mobile3}}",
+            "telephone" : "{{settings.mobile3|safe}}",
             "contactType" : "MBBS Abroad Counselling"
             },
             {
             "@type" : "ContactPoint",
-            "telephone" : "{{settings.tollfree}}",
+            "telephone" : "{{settings.tollfree|safe}}",
             "contactType" : "tollfree MBBS Abroad Counselling"
             }],
         "sameAs": [
-            "{{settings.fb_url}}",
-            "{{settings.insta_url}}",
-            "{{settings.linkedin_url}}",
-            "{{settings.twitter_url}}",
-            "{{settings.youtube_url}}"
+            "{{settings.fb_url|safe}}",
+            "{{settings.insta_url|safe}}",
+            "{{settings.linkedin_url|safe}}",
+            "{{settings.twitter_url|safe}}",
+            "{{settings.youtube_url|safe}}"
             ]
         }
     </script>
@@ -58,22 +58,22 @@
                             <div class="col-lg-4 col-12 mb-0 mb-md-4 pb-0 pb-md-2">
                                 <a href="#" class="logo-footer">                                        
                                     {% if settings.logo_url %}
-                                        <img src="{{settings.logo_url}}" height="24" alt="{{settings.business_name}}">
+                                        <img src="{{settings.logo_url|safe}}" height="24" alt="{{settings.business_name|safe}}">
                                     {% else %}
-                                        <img src="{% static 'assets/images/logo-light.png' %}" height="24" alt="">
+                                        <img src="{% static 'assets/images/logo-light.png' %}" height="24" alt="{{settings.business_name|safe}}">
                                     {% endif %}                                        
                                 </a>
-                                <p class="mt-4">{{settings.business_name}}</p>
-                                <p class="mt-4">{{settings.business_description}}</p>
-                                <p class="mt-4">{{settings.business_HO_address}}</p>
-                                <p class="mt-4">{{settings.business_HO_city}}</p>
+                                <p class="mt-4">{{settings.business_name|safe}}</p>
+                                <p class="mt-4">{{settings.business_description|safe}}</p>
+                                <p class="mt-4">{{settings.business_HO_address|safe}}</p>
+                                <p class="mt-4">{{settings.business_HO_city|safe}}</p>
                                 
                                 <ul class="list-unstyled social-icon foot-social-icon mb-0 mt-4">
-                                    <li class="list-inline-item"><a target="blank" href="{{settings.fb_url}}" class="rounded"><i data-feather="facebook" class="fea icon-sm fea-social"></i></a></li>
-                                    <li class="list-inline-item"><a target="blank" href="{{settings.insta_url}}" class="rounded"><i data-feather="instagram" class="fea icon-sm fea-social"></i></a></li>
-                                    <li class="list-inline-item"><a target="blank" href="{{settings.youtube_url}}" class="rounded"><i data-feather="youtube" class="fea icon-sm fea-social"></i></a></li>
-                                    <li class="list-inline-item"><a target="blank" href="{{settings.twitter_url}}" class="rounded"><i data-feather="twitter" class="fea icon-sm fea-social"></i></a></li>
-                                    <li class="list-inline-item"><a target="blank" href="{{settings.linkedin_url}}" class="rounded"><i data-feather="linkedin" class="fea icon-sm fea-social"></i></a></li>                                        
+                                    <li class="list-inline-item"><a target="blank" href="{{settings.fb_url|safe}}" class="rounded"><i data-feather="facebook" class="fea icon-sm fea-social"></i></a></li>
+                                    <li class="list-inline-item"><a target="blank" href="{{settings.insta_url|safe}}" class="rounded"><i data-feather="instagram" class="fea icon-sm fea-social"></i></a></li>
+                                    <li class="list-inline-item"><a target="blank" href="{{settings.youtube_url|safe}}" class="rounded"><i data-feather="youtube" class="fea icon-sm fea-social"></i></a></li>
+                                    <li class="list-inline-item"><a target="blank" href="{{settings.twitter_url|safe}}" class="rounded"><i data-feather="twitter" class="fea icon-sm fea-social"></i></a></li>
+                                    <li class="list-inline-item"><a target="blank" href="{{settings.linkedin_url|safe}}" class="rounded"><i data-feather="linkedin" class="fea icon-sm fea-social"></i></a></li>                                        
                                 </ul><!--end icon-->
                             </div><!--end col-->
                     
@@ -81,7 +81,7 @@
                                 <h5 class="footer-head">MBBS Abroad</h5>
                                 <ul class="list-unstyled footer-list mt-4">
                                 {% for location in country_locations %}
-                                    <li><a href="../{{ location.slug }}" class="text-foot"><i class="uil uil-angle-right-b me-1"></i> MBBS in {{ location.full_name }}</a></li>
+                                    <li><a href="{% url 'location' location.slug|safe %}" class="text-foot"><i class="uil uil-angle-right-b me-1"></i> MBBS in {{ location.full_name|safe }}</a></li>
                                 {% endfor %}
                                     
                                     
@@ -131,7 +131,7 @@
                 <div class="row align-items-center">
                     <div class="col-sm-6">
                         <div class="text-sm-start">
-                            <p class="mb-0">© <script>document.write(new Date().getFullYear())</script> Landrick. Powered by <a href="https://codesquare.co.in/" target="_blank" class="text-reset">Code Square Technologies</a>.</p>
+                            <p class="mb-0">© <script>document.write(new Date().getFullYear())</script> Landrick. Powered by <a follow href="https://codesquare.co.in/" target="_blank" class="text-reset">Code Square Technologies</a>.</p>
                         </div>
                     </div><!--end col-->
 

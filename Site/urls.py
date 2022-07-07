@@ -38,8 +38,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('tinymce/', include('tinymce.urls')),
     path('', views.home, name='home'),
-    path('<str:slug>/', LocationDetailView.as_view()),
-    path('providers/<str:slug>/', ProviderDetailView.as_view()),
+    path('<str:slug>/', LocationDetailView.as_view(), name='location'),
+    path('providers/<str:slug>/', ProviderDetailView.as_view(), name='provider'),
     path('', include('Connect.urls')),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
 ]

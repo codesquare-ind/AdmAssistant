@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils.text import slugify
 from .models import Course, Provider, Location, ProvidersCourse, Feedback, FAQ, SiteSetting
 
 #admin.site.register(SingletonModel)
@@ -25,7 +26,16 @@ class ProviderAdmin(admin.ModelAdmin):
 admin.site.register(Provider,ProviderAdmin)
 
 class LocationAdmin(admin.ModelAdmin):
-    list_display = ["full_name"]
+    list_display = ["full_name",]
+
+    def save_model(self, request, obj, form, change):
+        if request.user.first_name:
+            obj.added_by = request.user.first_name
+        else :
+            obj.added_by = request.user.username
+
+        obj.slug=slugify("mbbs-in-"+obj.full_name)
+        super().save_model(request, obj, form, change)
 
 admin.site.register(Location,LocationAdmin)
 
