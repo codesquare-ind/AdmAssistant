@@ -58,6 +58,7 @@ class Provider(models.Model):
     is_featured = models.BooleanField(default=False)
 
     IsActive = models.BooleanField(default=True)
+    last_modified = models.DateField(default=datetime.date.today)
     
     def __str__(self):
         return self.name

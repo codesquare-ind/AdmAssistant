@@ -20,11 +20,19 @@ from django.conf.urls import include
 from django.conf import settings
 from . import views
 from .views import LocationDetailView, ProviderDetailView
+from django.contrib.sitemaps.views import sitemap
+from .sitemaps import *
 
 #admin customization
 admin.site.site_header="Admin Panel"
 admin.site.site_title="Dashboard"
 admin.site.index_title="My Admin Panel"
+
+sitemaps = {
+    'location':LocationSitemap,
+    'provider':ProviderSitemap,
+    'static':StaticSitemap
+}
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -33,6 +41,7 @@ urlpatterns = [
     path('<str:slug>/', LocationDetailView.as_view()),
     path('providers/<str:slug>/', ProviderDetailView.as_view()),
     path('', include('Connect.urls')),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
