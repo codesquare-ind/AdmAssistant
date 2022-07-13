@@ -9,9 +9,9 @@
                 <img src="{% static 'assets/images/logo-light.png' %}" class="l-light" height="24" alt="">
             </span>-->    
             {% if settings.logo_url %}
-                <img src="{{settings.logo_url}}" height="24" alt="{{settings.business_name|safe}}">
+                <img src="{{settings.logo_url}}" height="24" width="100" alt="Logo - {{settings.business_name|safe}}">
             {% else %}
-                <img src="{% static 'assets/images/logo-light.png' %}" height="24" class="logo-dark-mode" alt="{{settings.business_name|safe}}">
+                <img src="{% static 'assets/images/logo-light.png' %}" height="24" width="100" class="logo-dark-mode" alt="Logo - {{settings.business_name|safe}}">
             {% endif %}
         </a>
 
