@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.utils.text import slugify
 from .models import Course, Provider, Location, ProvidersCourse, Feedback, FAQ, SiteSetting
+import datetime
 
 #admin.site.register(SingletonModel)
 class SiteSettingAdmin(admin.ModelAdmin):
@@ -25,7 +26,7 @@ class ProviderAdmin(admin.ModelAdmin):
             obj.added_by = request.user.username
 
         current_year = datetime.datetime.now().year  
-        self.slug=slugify("mbbs-abroad-"+self.location_country+" "+str(current_year)+" from "+self.name)
+        obj.slug=slugify("mbbs-abroad-"+obj.location_country+" "+str(current_year)+" from "+obj.name)
         super().save_model(request, obj, form, change)
 
     def get_form(self, request, obj=None, **kwargs):
