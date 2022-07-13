@@ -175,6 +175,7 @@ class SiteSetting(SingletonModel):
     tollfree = models.CharField(max_length=16, default='18008890382')
     email = models.EmailField(default='support@example.com')
     logo_url = models.URLField(max_length = 200, default='https://example.com/abc.jpg')
+    logo_url_dark = models.URLField(max_length = 200, default='https://example.com/abc.jpg')
     favicon_url = models.URLField(max_length = 200, default='https://example.com/abc.jpg')
     featured_video_url = models.URLField(max_length = 200, default='https://youtube.com')
 

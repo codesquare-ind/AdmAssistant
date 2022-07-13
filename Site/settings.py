@@ -28,7 +28,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['0.0.0.0','localhost', '127.0.0.1','https://admissionsquare.in','admissionsquare.in','https://fra1.digitaloceanspaces.com/admassistant']
 CSRF_TRUSTED_ORIGINS=['https://admissionsquare.in',]
-
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_WHITELIST = (
+  'http://localhost:8000', 'https://admissionsquare.in',
+)
 # Application definition
 
 INSTALLED_APPS = [
@@ -42,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django.contrib.sitemaps',
+    'corsheaders',
     'storages',
     'Site',
     'Connect',
@@ -56,6 +60,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 
