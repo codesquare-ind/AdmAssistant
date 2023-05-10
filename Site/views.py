@@ -38,8 +38,7 @@ class ProviderDetailView(DetailView):
 
     # override context data
     def get_context_data(self, *args, **kwargs):
-        context = super(ProviderDetailView,
-             self).get_context_data(*args, **kwargs) 
+        context = super(ProviderDetailView,self).get_context_data(*args, **kwargs) 
         context['meta'] = {
                 "title":"MBBS from "+self.object.name,
                 "description":"MBBS from "+self.object.name +" is really perfect for indian Medical students. "+self.object.short_description,

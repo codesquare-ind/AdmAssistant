@@ -51,9 +51,9 @@
         <div id="navigation">
             <!-- Navigation Menu-->   
             <ul class="navigation-menu nav-light">
-                <li><a href="{% url 'home' %}" class="sub-menu-item">MBBS Abroad</a></li>
+                <li><a href="{% url 'home' %}" class="sub-menu-item">Admission Abroad {% now "Y" %}</a></li>
                 <li class="has-submenu parent-parent-menu-item">
-                    <a href="javascript:void(0)">Destinations</a><span class="menu-arrow"></span>
+                    <a href="javascript:void(0)">Courses</a><span class="menu-arrow"></span>
                     <ul class="submenu">
                     {% for location in country_locations %}
                         <li  class="has-submenu parent-menu-item"><a href="{% url 'location' location.slug %}">MBBS in {{location.full_name|safe}} </a><span class="submenu-arrow"></span>
@@ -70,7 +70,7 @@
                 </li>
 
                 <li class="has-submenu parent-parent-menu-item">
-                    <a href="javascript:void(0)">Courses</a><span class="menu-arrow"></span>
+                    <a href="javascript:void(0)">Destinations</a><span class="menu-arrow"></span>
                     <ul class="submenu">
                     {% for location in country_locations %}
                         <li class="has-submenu parent-menu-item"><a href="{% url 'location' location.slug|safe %}"> {{location.full_name|safe}} </a><span class="submenu-arrow"></span>

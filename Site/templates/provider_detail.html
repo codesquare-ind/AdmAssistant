@@ -71,9 +71,9 @@
                     <div class="col-lg-8 col-md-6">
                         <div class="card blog blog-detail border-0 shadow rounded">
                             {% if object.logo_url %}
-                                <img src="{{object.logo_url}}" class="img-fluid rounded-top" alt="{{object.name}}">
+                                <img src="{{object.logo_url}}" class="img-fluid rounded-top" alt="{{object.name|safe}}">
                             {%else%}
-                                <img src="{% static 'assets/images/blog/01.jpg' %}" class="img-fluid rounded-top" alt="{{object.name}}">
+                                <img src="{% static 'assets/images/blog/01.jpg' %}" class="img-fluid rounded-top" alt="{{object.name|safe}}">
                             {% endif %}                           
                             
                             <div class="card-body content">
@@ -100,7 +100,7 @@
                                 <!-- RECENT POST -->
                                 <div class="widget mt-4">
                                     <span class="bg-dark d-block py-2 rounded shadow text-center text-light h6 mb-0">
-                                       <h2> MBBS Abroad {{object.location_country|safe}}</h2>
+                                       <h2> Study Abroad {{object.location_country|safe}}</h2>
                                     </span>
                                     <div class="mt-4">
                                     {% for provider in providers %}

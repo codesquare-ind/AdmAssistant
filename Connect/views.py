@@ -1,39 +1,59 @@
-from django.views.generic.detail import DetailView
+from django.views import View
 from django.shortcuts import render
 from .models import CallbackRequest
-from .forms import CallbackForm
+from .forms import ContactForm
+from django.http import HttpResponseRedirect
+from django.core.mail import send_mail, BadHeaderError
+from django.conf import settings
+from django.http import HttpResponse
 
 # Create your views here.
-class CallbackDetailView(DetailView):
-    # specify the model to use
-    model = CallbackRequest
-    template_name = '_connect.html'
+# class Callback(View):
+#     # specify the model to use
+#     model = CallbackRequest
+#     fields = ('name', 'phone', 'comment')
+#     template_name = '_connect.html'
+#     success_url = '/'
     
-    def get_context_data(self, *args, **kwargs):
-       context = super(index, self).get_context_data(*args, **kwargs)
-       context['form'] = CallbackForm()
-       return context
+#     def get(self, request, *args, **kwargs):
+#         return render(request, self.template_name)
 
-    def form_valid(self, form):
-        success = False
-        if self.method == "POST":
-                form = CallbackForm(self.POST)
-        if form.is_valid():
-                subject = "Website Inquiry" 
-                body = {
-                        'name': form.cleaned_data['name'],  
-                        'mobile': form.cleaned_data['phone'], 
-                        }
-                message = "\n".join(body.values())
-                cb = form.save(commit=False)                
-                cb.save()
-                try:
-                        send_mail(subject, message, {{settings.host_user}}, [{{settings.email}}]) 
-                except:
-                        return HttpResponse('Invalid header found.')
-                #return HttpResponseRedirect('./')
-        else:
-                form = CallbackForm()
-                if 'success' in request.GET:
-                    success = True
+#     def post(self, request, *args, **kwargs):
+#         form = self.model(request.POST)
+#         if form.is_valid():
+#             # <process form cleaned data>
+#             return HttpResponseRedirect('/')
+
+#         return render(request, self.template_name, {'form': form})
+
+def Callback_view(request):
+        if request.method == 'POST':
+                success = False
+                form = ContactForm(request.POST)
+                if form.is_valid():
+                        form.save()
+                        success = True
+                        return render(request, '_connect.html')
+
+        form = ContactForm()
+        context = {'form': form}
+        return render(request,'_connect.html',context)
+#     def form_valid(self, form):
+#         success = False        
+#         subject = "Website Inquiry" 
+#         body = {
+#                 'name': form.cleaned_data['name'],  
+#                 'mobile': form.cleaned_data['phone'], 
+#                 'comment': form.cleaned_data['comment'], 
+#                 'callback URL': self.request.get_full_path
+#                 }
+#         message = "\n".join(body.values())
+#         self.object = form.save()
+#         try:
+#                 send_mail(subject, message, settings.Email_HOST_USER, ['codesquare01@gmail.com',])                 
+#         except BadHeaderError:
+#                 return HttpResponse('Invalid header found.')
+#         success = True
+#         return super(self).form_valid(form)
+        
         

@@ -187,10 +187,13 @@ class SiteSetting(SingletonModel):
 
     banner_title = models.CharField(max_length=255, default='Banner Title')
     banner_description = models.CharField(max_length=500, default='Banner Description')
+    banner_image = models.ImageField(upload_to = 'Banners', null=True, blank=True)
     banner1_title = models.CharField(max_length=255, default='Banner1 Title')
     banner1_description = models.CharField(max_length=500, default='Banner1 Description')
+    banner1_image = models.ImageField(upload_to = 'Banners', null=True, blank=True)
     banner2_title = models.CharField(max_length=255, default='Banner2 Title')
     banner2_description = models.CharField(max_length=500, default='Banner2 Description')
+    banner2_image = models.ImageField(upload_to = 'Banners', null=True, blank=True)
 
     business_HO_address = models.CharField(max_length=150, default='Business HO Address')
     business_HO_city = models.CharField(max_length=75, default='Business HO City')

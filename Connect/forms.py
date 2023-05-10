@@ -1,8 +1,8 @@
-from django import forms
+from django.forms import ModelForm
 from .models import CallbackRequest
 
-class CallbackForm(forms.ModelForm):
 
+class ContactForm(ModelForm):
     class Meta:
         model = CallbackRequest
-        fields = ('name', 'phone')
+        fields = '__all__'

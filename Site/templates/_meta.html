@@ -16,12 +16,30 @@
     <meta property="og:image" content={% if settings.logo_url %} "{{settings.logo_url|safe}}" {% else %} "NA" {% endif %} />
     <meta property="og:description" content={% if meta.description %} "{{meta.description|safe}}" {% else %} "{{settings.meta_description|safe}}" {% endif %} />
     <meta property="og:site_name" content="{{settings.business_name|safe}}" />
-    <meta property="fb:admins" content="{{settings.fb_admin_id|safe}}" />
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','{{settings.gtm_code}}');</script>
-    <!-- End Google Tag Manager --> 
+    {% if settings.fb_admin_id and settings.fb_admin_id|safe not in 'NA' %}
+        <meta property="fb:admins" content="{{settings.fb_admin_id|safe}}" />
+    {% endif %}
+    {% if settings.gtm_code and settings.gtm_code|safe not in 'NA' %}
+        <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','{{settings.gtm_code|safe}}');</script>
+        <!-- End Google Tag Manager --> 
+    {% endif %}
+    {% if settings.ga_code and settings.ga_code|safe not in 'NA' %}
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id={{settings.ga_code|safe}}"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', '{{settings.ga_code|safe}}');
+        </script>
+    {% endif %}
+    {% if settings.go_code and settings.go_code|safe not in 'NA' %}
+        <script src="https://www.googleoptimize.com/optimize.js?id={{settings.go_code|safe}}"></script>
+    {% endif %}
 {% endblock %}
