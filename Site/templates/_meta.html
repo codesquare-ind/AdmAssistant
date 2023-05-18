@@ -10,9 +10,9 @@
     <meta name="robots" content="{{settings.meta_robots|safe}}" /> 
     <meta name="Version" content="v1.0" />
     <!-- Opengraph -->
-    <meta property="og:title" content={% if meta.title %} {{ meta.title|safe }} | {{settings.business_name|safe}} {% else %} {{ settings.meta_title|safe }} | {{settings.business_name|safe}} {% endif %} />    
+    <meta property="og:title" content="{% if meta.title %}{{ meta.title|safe }} | {{settings.business_name|safe}} {% else %}{{ settings.meta_title|safe }} | {{settings.business_name|safe}}{% endif %}" />    
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={% if meta.url %} "{{settings.meta_website|safe}}/{{meta.url|safe}}" {% else %} "{{settings.meta_website|safe}} {% endif %} />    
+    <meta property="og:url" content={% if meta.url %} "{{settings.meta_website|safe}}/{{meta.url|safe}}" {% else %} "{{settings.meta_website|safe}}" {% endif %} />    
     <meta property="og:image" content={% if settings.logo_url %} "{{settings.logo_url|safe}}" {% else %} "NA" {% endif %} />
     <meta property="og:description" content={% if meta.description %} "{{meta.description|safe}}" {% else %} "{{settings.meta_description|safe}}" {% endif %} />
     <meta property="og:site_name" content="{{settings.business_name|safe}}" />
@@ -41,5 +41,10 @@
     {% endif %}
     {% if settings.go_code and settings.go_code|safe not in 'NA' %}
         <script src="https://www.googleoptimize.com/optimize.js?id={{settings.go_code|safe}}"></script>
+    {% endif %}
+    {% if settings.hubspot_track_code and settings.hubspot_track_code|safe not in 'NA' %}
+        <!-- Start of HubSpot Embed Code -->
+        <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/{{settings.hubspot_track_code|safe}}.js"></script>
+        <!-- End of HubSpot Embed Code 39780180-->
     {% endif %}
 {% endblock %}

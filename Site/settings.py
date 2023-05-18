@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-xe7r&zuw1scx11qh)obx(d)v432k2n^#uzn2e=z8so$bdun0vs
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '156.67.210.119','https://admissionsquare.in','admissionsquare.in','https://fra1.digitaloceanspaces.com/admassistant']
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost','127.0.0.1', '156.67.210.119','https://admissionsquare.in','admissionsquare.in','https://fra1.digitaloceanspaces.com/admassistant']
 
 CSRF_TRUSTED_ORIGINS=['https://admissionsquare.in',]
 CORS_ORIGIN_ALLOW_ALL = False

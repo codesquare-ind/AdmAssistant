@@ -208,6 +208,7 @@ class SiteSetting(SingletonModel):
     gtm_code = models.CharField(max_length=16, default='NA', help_text = "google tag manager code")
     ga_code = models.CharField(max_length=16, default='NA', help_text = "google analytics code")
     go_code = models.CharField(max_length=16, default='NA', help_text = "google optimizer code")
+    hubspot_track_code = models.CharField(max_length=16, default='NA', help_text = "Hubspot Tracking code : Marketting form from HubSpot CMS")
 
     fb_page_id = models.CharField(max_length=16, default='NA', help_text = "PageId : FB Messanger Chat Plugin")
     fb_admin_id = models.CharField(max_length=255, default='NaN', help_text = "fb:admins : Facebook Admin ID - go to page viewsource search User_ID, if you are admin")

@@ -453,8 +453,19 @@
 
                     <div class="col-lg-4 col-md-5 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
                         <div class="card border-0 rounded">
+                            <h4 class="card-body py-2 card-title">Claim Admission Abroad Consultation free of cost.</h4>
                             <div class="card-body">
-                                <form>
+                                {% if settings.hubspot_track_code and settings.hubspot_track_code|safe not in 'NA' %}
+                                    <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
+                                    <script>
+                                    hbspt.forms.create({
+                                        region: "na1",
+                                        portalId: "{{settings.hubspot_track_code|safe}}",
+                                        formId: "f6494d05-0b16-4f8c-8ed7-db04e97fa6e7"
+                                    });
+                                    </script>
+                                {% endif %}
+                                <!-- <form>
                                     <h4>Claim MBBS Abroad Consultation free of cost.</h4>
                                     <div class="row">
                                         <div class="col-lg-12">
@@ -465,7 +476,7 @@
                                                     <input type="text" class="form-control ps-5" placeholder="Name" name="name" required="">
                                                 </div>
                                             </div>
-                                        </div><!--end col-->        
+                                        </div>
                                         <div class="col-lg-12">
                                             <div class="mb-3">
                                                 <label class="form-label">Phone : <span class="text-danger">*</span></label>
@@ -474,7 +485,7 @@
                                                     <input type="number" id="number" class="form-control ps-5" placeholder="phone" required="" >
                                                 </div>
                                             </div>
-                                        </div><!--end col-->
+                                        </div>
                                         <div class="col-lg-12">
                                             <div class="mb-3">
                                                 <label class="form-label">Comments :</label>
@@ -483,14 +494,14 @@
                                                     <textarea  class="form-control ps-5" placeholder="Comments" name="comment" required="" maxlength="800" > </textarea>
                                                 </div>
                                             </div>
-                                        </div><!--end col-->
+                                        </div>
                                         <div class="col-lg-12 mt-2 mb-0">
                                             <div class="d-grid">
                                                 <button class="btn btn-primary">Submit</button>
                                             </div>
-                                        </div><!--end col-->
+                                        </div>
                                     </div>
-                                </form>  
+                                </form>   -->
                             </div>
                         </div>
                     </div><!--end col-->
